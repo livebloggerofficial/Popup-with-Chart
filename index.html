@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button class="stats-btn">Display The Stats</button>
+
+    <div class="popup-container">
+      <h3>Popular Game Engines</h3>
+
+      <div class="popup-content">
+        <div class="chart-container">
+          <canvas id="myChart"></canvas>
+        </div>
+        <div class="popup-details">
+          This is the data that we get from Itch.io. There are a lot of games
+          developed using the Unity Game Engine, making it the most popular game
+          engine on Itch.io.
+        </div>
+      </div>
+
+      <div class="close-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="#f40076"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+
+    <script>
+      const popupContainer = document.querySelector(".popup-container");
+      const statsBtn = document.querySelector(".stats-btn");
+      const closeBtn = document.querySelector(".popup-container .close-btn");
+
+      statsBtn.addEventListener("click", () => {
+        popupContainer.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        popupContainer.classList.remove("active");
+      });
+    </script>
+
+    <script>
+      const ctx = document.getElementById("myChart").getContext("2d");
+      const myChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: ["Unity", "GameMaker", "Godot", "Unreal", "libGDX"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [20, 15, 13, 5, 2],
+              backgroundColor: [
+                "#f40076",
+                "#3d348b",
+                "#44ffd1",
+                "#f75c03",
+                "#fca311",
+              ],
+
+              borderWidth: 0,
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>
